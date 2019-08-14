@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+			<action method="addJs"><script>indabox/storepickup.js</script></action>
+			<action method="addItem"><type>skin_css</type><name>indabox/css/storepickup.css</name></action>
+		</reference>	
+    </default>
+	
+	<!--checkout_cart_index>	
+		<reference name="checkout.cart.shipping">
+			<action method="setTemplate"><template>storepickup/shippingtax.phtml</template></action>
+			<block type="storepickup/storepickup" name="storepickup" as="storepickup" >
+				<block type="storepickup/location" name="store_location" as="store_location" template="storepickup/store_location.phtml" />
+				<block type="storepickup/storepickup" name="list_store" as="list_store" template="storepickup/store.phtml" />
+			</block>
+		</reference>
+	</checkout_cart_index-->
+	
+	<checkout_onepage_index>
+        <reference name="head">
+            <action method="addJs"><script>indabox/markerclusterer.js</script></action>
+        </reference>
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate"><template>ibstorepickup/checkout/onepage/billing.phtml</template></action>
+		</reference>		
+	</checkout_onepage_index>	
+	
+</layout> 

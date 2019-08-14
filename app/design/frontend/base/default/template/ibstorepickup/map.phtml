@@ -1,0 +1,79 @@
+<div class="indabox">
+    <div id="indabox_conditions">
+        <iframe src="<?php echo $this->getTosUrl() ?>">
+            <p><?php echo $this->__('Your browser does not support iframes.') ?></p>
+        </iframe>
+        <div style="clear: both"></div>
+        <p class="checkbox">
+            <input type="checkbox" name="indabox_accept_terms" id="indabox_accept_terms" value="1" autocomplete="off" class="required" />
+            <label for="indabox_accept_terms"><?php echo $this->__('I accept IndaBox terms and conditions') ?></label>
+        </p>
+    </div>
+    <div id="indabox_map" style="display: none;">
+        <h3><?php echo $this->__('Search for pick-up points') ?></h3>
+        <p><?php echo $this->__('You are viewing the collection points closest to the address below. If you want, you can enter a different address.') ?></p>
+        <div class="address">
+            <input type="text" id="indabox_search_address" value="<?php echo $this->htmlEscape($this->getBillingAddress()) ?>" size="50" />
+            <label for="indabox_search_radius"><?php echo $this->__('Radius') ?></label>
+            <select id="indabox_search_radius">
+                <option value="1">1 km</option>
+                <option value="3" selected="selected">3 km</option>
+                <option value="10">10 km</option>
+                <option value="30">30 km</option>
+                <option value="50">50 km</option>
+            </select>
+            <button id="indabox_search" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+            <img src="<?php echo $this->getSkinUrl('indabox/images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading') ?>" />
+        </div>
+        <div id="indabox_google_map"></div>
+    </div>
+    <div id="indabox_point" style="display: none;">
+        <input type="hidden" name="indabox_point_id" id="indabox_point_id" value="0" />
+        <h3><?php echo $this->__('Selected pick-up point') ?></h3>
+        <h5 id="indabox_point_name"></h5>
+        <p id="indabox_point_address"></p>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+    Event.observe('indabox_accept_terms', 'click', function (event) { 		
+        $('indabox_conditions').hide();
+        $('indabox_map').show();
+        
+        ibStorePickup.initGoogleMap('<?php echo $this->getGoogleMaps() ?>', 'indabox_google_map');
+        ibStorePickup.onInit = function () {
+            ibStorePickup.search($('indabox_search_address').value, $('indabox_search_radius').value);
+        };
+        ibStorePickup.onSearchStart = function () {
+            $('indabox_search').addClassName('in-progress').addClassName('disabled');
+        };
+        ibStorePickup.onSearchEnd = function (points) {
+            $('indabox_search').removeClassName('in-progress').removeClassName('disabled');
+            if ( ! points.length)
+                alert('<?php echo $this->__('No points found around given location') ?>');
+        };
+        ibStorePickup.onSelectPoint = function (point) {
+            $('indabox_point').show();
+            $('indabox_point_id').value = point.id;
+            $('indabox_point_name').innerHTML = point.name;
+            $('indabox_point_address').innerHTML = point.street
+                + '<br />' + point.postcode
+                + ' ' + point.city
+                + ' ' + point.region
+                //+ ' ' + point.country_id
+            ;
+        };
+    });	
+    
+    Event.observe('indabox_search', 'click', function (event) {
+        event.preventDefault();
+        if ($(this).hasClassName('in-progress')) {
+            alert('<?php echo $this->__('Another search is already running') ?>');
+            return;
+        }
+            
+        ibStorePickup.search($('indabox_search_address').value, $('indabox_search_radius').value);
+    });
+//]]>
+</script>

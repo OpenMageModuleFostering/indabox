@@ -1,0 +1,61 @@
+#indabox_conditions iframe {
+    border: 0px;
+    margin: 20px 0;
+    height: 360px;
+    width: 100%;
+}
+
+#indabox_search+img{
+    display: none;
+    margin: 2px 0 0 10px;
+}
+
+#indabox_map {
+}
+
+#indabox_google_map {
+    width: 100%; 
+    height: 360px; 
+    margin-top: 20px;
+}
+
+#indabox_point {
+    margin-top: 20px;
+}
+
+#indabox_search.in-progress+img{
+    display: inline-block;
+}
+
+.indabox-info-window {
+    padding: 5px;
+    font-size: 13px;
+    color: #555;
+    line-height: 18px; 
+    font-family: arial;
+    min-width: 300px;
+}
+
+.indabox-info-window .row {
+    margin: 5px 0;
+}
+
+.indabox-info-window .row.title {
+    color: #457085;
+    text-transform: capitalize;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.indabox-info-window .row strong {
+    color: grey !important;
+    font-weight: 400 !important;
+}
+
+.indabox-info-window .row a {
+    margin-top: 7px;
+    float: left;
+    color: #9bae1d;
+    font-size: 14px;
+    text-decoration: none;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IndaBox_StorePickup>
+            <active>true</active>
+            <codePool>local</codePool>
+        </IndaBox_StorePickup>
+    </modules>
+</config>

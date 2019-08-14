@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <IndaBox_StorePickup>
+            <version>0.1.1</version>
+        </IndaBox_StorePickup>
+    </modules>
+    
+    <global>
+ 
+        <models>
+            <ibstorepickup>
+                <class>IndaBox_StorePickup_Model</class>
+                <resourceModel>ibstorepickup_resource</resourceModel>
+            </ibstorepickup>
+            <ibstorepickup_resource>
+                <class>IndaBox_StorePickup_Model_Resource</class>
+                <entities>
+					<order_point>
+						<table>ibsp_order_point</table>
+					</order_point>
+                </entities>
+            </ibstorepickup_resource>
+        </models>
+        
+        <blocks>
+            <ibstorepickup>
+                <class>IndaBox_StorePickup_Block</class>
+            </ibstorepickup>
+			<checkout>
+				<rewrite>
+					<onepage_payment_methods>IndaBox_StorePickup_Block_Checkout_Onepage_Payment_Methods</onepage_payment_methods>
+                    <onepage_shipping_method_available>IndaBox_StorePickup_Block_Checkout_Onepage_Shipping_Method_Available</onepage_shipping_method_available>
+				</rewrite>
+			</checkout>
+        </blocks>
+        
+        <helpers>
+            <ibstorepickup>
+                <class>IndaBox_StorePickup_Helper</class>
+            </ibstorepickup>
+        </helpers>
+        
+        <resources>
+            <ibstorepickup_setup>
+                <setup>
+                    <module>IndaBox_StorePickup</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ibstorepickup_setup>
+            <ibstorepickup_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ibstorepickup_write>
+            <ibstorepickup_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ibstorepickup_read>
+        </resources>
+        
+        <events>
+			<sales_order_invoice_pay>
+			  <observers>
+		          <indabox_storepickup_observer>
+		            <type>singleton</type>
+		            <class>ibstorepickup/observer</class>
+		            <method>onOrderInvoicePay</method>
+		          </indabox_storepickup_observer>
+		       </observers>
+			</sales_order_invoice_pay>
+		</events>
+        
+    </global>
+    
+    <frontend>
+
+       <translate>
+            <modules>
+                <IndaBox_StorePickup>
+                    <files>
+                        <default>IndaBox_StorePickup.csv</default>
+                    </files>
+                </IndaBox_StorePickup>
+            </modules>
+        </translate>
+
+        <routers>
+            <ibstorepickup>
+                <use>standard</use>
+                <args>
+                    <module>IndaBox_StorePickup</module>
+                    <frontName>ibstorepickup</frontName>
+                </args>
+            </ibstorepickup>
+        </routers>
+        
+        <layout>
+            <updates>
+                <ibstorepickup>
+                    <file>ibstorepickup.xml</file>
+                </ibstorepickup>
+            </updates>
+        </layout>
+        
+		<events>
+			<checkout_type_onepage_save_order_after>
+			  <observers>
+		          <indabox_storepickup_observer>
+		            <type>singleton</type>
+		            <class>ibstorepickup/observer</class>
+		            <method>onSaveOrderAfter</method>
+		          </indabox_storepickup_observer>
+		       </observers>
+			</checkout_type_onepage_save_order_after>
+			<checkout_controller_onepage_save_shipping_method> 
+			  <observers>
+		          <indabox_storepickup_observer>
+		            <type>singleton</type>
+		            <class>ibstorepickup/observer</class>
+		            <method>onSaveShippingMethod</method>
+		          </indabox_storepickup_observer>
+		       </observers>		
+			</checkout_controller_onepage_save_shipping_method> 
+		</events>		
+    </frontend>
+    
+    <adminhtml>
+
+       <translate>
+            <modules>
+                <IndaBox_StorePickup>
+                    <files>
+                        <default>IndaBox_StorePickup.csv</default>
+                    </files>
+                </IndaBox_StorePickup>
+            </modules>
+        </translate>
+ 
+
+		<layout>
+			<updates>
+				<ibstorepickup>
+					<file>ibstorepickup.xml</file>
+				</ibstorepickup>
+			</updates>
+		</layout>
+    </adminhtml>   
+    
+    <default>
+        <carriers>
+            <ibstorepickup>
+                <accept>0</accept>
+                <active>0</active>
+                <model>ibstorepickup/carrier_storepickup</model>
+                <title>Corriere con consegna presso IndaBox Point</title>
+                <sandbox>1</sandbox>
+                <debug>1</debug>
+                <cost>0</cost>
+                <maximum_subtotal>500</maximum_subtotal>
+                <maximum_weight>15</maximum_weight>
+                <tos_url>http://www.indabox.it/condizioni-prestashop/</tos_url>
+                <allowspecific_payment>1</allowspecific_payment>
+            </ibstorepickup>
+        </carriers>
+    </default>	
+	
+</config>

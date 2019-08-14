@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/indabox",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "IndaBox Shipping Method Extension",
+    "authors": [
+    {
+        "name": "IndaBox",
+        "email": "info@indabox.it"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<jstranslator>
+    <indabox-agreement translate="message" module="ibstorepickup">
+        <message>You should accept IndaBox terms and conditions</message>
+    </indabox-agreement>
+    <indabox-select-point translate="message" module="ibstorepickup">
+        <message>You should select one of available pick-up points to continue</message>
+    </indabox-select-point>
+    <indabox-error translate="message" module="ibstorepickup">
+        <message>Error</message>
+    </indabox-error>
+    <indabox-use-point translate="message" module="ibstorepickup">
+        <message>Select this pick-up point</message>
+    </indabox-use-point>
+    <indabox-distance translate="message" module="ibstorepickup">
+        <message>Distance</message>
+    </indabox-distance>
+    <indabox-telephone translate="message" module="ibstorepickup">
+        <message>Telephone</message>
+    </indabox-telephone>
+    <indabox-hours translate="message" module="ibstorepickup">
+        <message>Hours</message>
+    </indabox-hours>
+</jstranslator>
